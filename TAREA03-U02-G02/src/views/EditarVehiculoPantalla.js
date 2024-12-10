@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, Button, StyleSheet,Switch, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet,Switch, ScrollView,Alert, TouchableOpacity } from "react-native";
 import { editarVehiculo, obtenerVehiculos } from "../controllers/VehiculoConstroller";
 import DateTimePicker from "@react-native-community/datetimepicker";
 

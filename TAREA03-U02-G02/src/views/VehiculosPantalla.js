@@ -1,14 +1,29 @@
 import React, { useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Button } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Button, Alert } from "react-native";
 import { obtenerVehiculos, eliminarVehiculo } from "../controllers/VehiculoConstroller";
 
 const VehiculosPantalla = ({ navigation }) => {
     const [vehiculos, setVehiculos] = useState(obtenerVehiculos()); // Estado local para manejar la lista de vehículos
 
     const handleDelete = (placa) => {
-        eliminarVehiculo(placa);
-        setVehiculos(obtenerVehiculos()); // Actualizar la lista de vehículos después de eliminar
-        alert("Vehículo eliminado");
+        Alert.alert(
+            "Confirmar eliminación",
+            "¿Estás seguro de que deseas eliminar este vehículo?",
+            [
+                {
+                    text: "Cancelar",
+                    style: "cancel"
+                },
+                {
+                    text: "Confirmar",
+                    onPress: () => {
+                        eliminarVehiculo(placa);
+                        setVehiculos(obtenerVehiculos()); // Actualizar la lista de vehículos después de eliminar
+                        alert("Vehículo eliminado");
+                    }
+                }
+            ]
+        );
     };
 
     return (
