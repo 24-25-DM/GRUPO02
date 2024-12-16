@@ -5,6 +5,18 @@ import { obtenerVehiculos, eliminarVehiculo } from "../controllers/VehiculoConst
 const VehiculosPantalla = ({ navigation }) => {
     const [vehiculos, setVehiculos] = useState(obtenerVehiculos()); // Estado local para manejar la lista de vehículos
 
+    const handleSignOut = async () => {
+        try {
+           // Cierra la sesión de Firebase
+          navigation.reset({
+            index: 0, // Esto indica que la nueva pantalla será la principal
+            routes: [{ name: "LoginPantalla" }], // Reemplaza "Login" con el nombre de tu pantalla de inicio de sesión
+          });
+        } catch (error) {
+          console.error("Error al cerrar sesión:", error);
+        }
+      };
+
     const handleDelete = (placa) => {
         Alert.alert(
             "Confirmar eliminación",
